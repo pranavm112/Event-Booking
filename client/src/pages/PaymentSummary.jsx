@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import axios from 'axios';
+import api from '../api';
 import  { useContext, useEffect, useState } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom';
 import {IoMdArrowBack} from 'react-icons/io'
@@ -44,7 +44,7 @@ export default function PaymentSummary() {
       if(!id){
         return;
       }
-      axios.get(`/event/${id}/ordersummary/paymentsummary`).then(response => {
+      api.get(`/event/${id}/ordersummary/paymentsummary`).then(response => {
         setEvent(response.data)
 
         setTicketDetails(prevTicketDetails => ({

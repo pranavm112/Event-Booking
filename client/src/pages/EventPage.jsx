@@ -1,4 +1,5 @@
-import axios from "axios";
+import api from '../api';
+
 
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom"
@@ -15,7 +16,7 @@ export default function EventPage() {
     if(!id){
       return;
     }
-    axios.get(`/event/${id}`).then(response => {
+    api.get(`/event/${id}`).then(response => {
       setEvent(response.data)
     }).catch((error) => {
       console.error("Error fetching events:", error);

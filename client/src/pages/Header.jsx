@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import axios from 'axios'
+import api from '../api';
 import {Link} from "react-router-dom";
 import { UserContext } from "../UserContext";
 import { RxExit } from 'react-icons/rx';
@@ -16,7 +16,7 @@ export default function Header() {
   //! Fetch events from the server -------------------------------------------------
   useEffect(() => {
     
-    axios.get("/events").then((response) => {
+    api.get("/events").then((response) => {
       setEvents(response.data);
     }).catch((error) => {
       console.error("Error fetching events:", error);
@@ -43,7 +43,7 @@ export default function Header() {
   
   //! Logout Function --------------------------------------------------------
   async function logout(){
-    await axios.post('/logout');
+    await api.post('/logout');
     setUser(null);
   }
 //! Search input ----------------------------------------------------------------

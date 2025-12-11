@@ -1,11 +1,13 @@
 /* eslint-disable no-unused-vars */
 import { Route, Routes } from 'react-router-dom'
 import './App.css'
+
 import IndexPage from './pages/IndexPage'
 import RegisterPage from './pages/RegisterPage'
 import Layout from './Layout'
 import LoginPage from './pages/LoginPage'
-import axios from 'axios'
+//import axios from 'axios'
+import api from './api.js';
 import { UserContextProvider } from './UserContext'
 import UserAccountPage from './pages/UserAccountPage'
 import ForgotPassword from './pages/ForgotPassword'
@@ -18,8 +20,8 @@ import PaymentSummary from './pages/PaymentSummary'
 import TicketPage from './pages/TicketPage'
 import CreatEvent from './pages/CreateEvent'
 
-axios.defaults.baseURL = 'http://localhost:4000/';
-axios.defaults.withCredentials=true;
+//axios.defaults.baseURL = 'http://localhost:4000/';
+//axios.defaults.withCredentials=true;
 
 function App() {
   return (

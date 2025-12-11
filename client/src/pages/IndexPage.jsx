@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-key */
-import axios from "axios";
+import api from '../api';
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom";
 import { BsArrowRightShort } from "react-icons/bs";
@@ -11,7 +11,7 @@ import { BiLike } from "react-icons/bi";
    //! Fetch events from the server ---------------------------------------------------------------
     useEffect(() => {
       
-      axios
+      api
         .get("/createEvent")
         .then((response) => {
           setEvents(response.data);
@@ -23,7 +23,7 @@ import { BiLike } from "react-icons/bi";
     
   //! Like Functionality --------------------------------------------------------------
     const handleLike = (eventId) => {
-      axios
+      api
         .post(`/event/${eventId}`)
         .then((response) => {
             setEvents((prevEvents) =>

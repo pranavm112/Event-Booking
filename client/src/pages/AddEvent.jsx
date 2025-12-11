@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import axios from "axios";
+import api from '../api';
 import { UserContext } from "../UserContext";
 
 export default function AddEvent() {
@@ -34,7 +34,7 @@ export default function AddEvent() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios
+    api
       .post("/createEvent", formData)
       .then((response) => {
         alert("Created Successfully")
