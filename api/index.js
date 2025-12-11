@@ -18,12 +18,32 @@ const jwtSecret = "bsbsfbrnsftentwnnwnwn";
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(
-   cors({
-      credentials: true,
-      origin: "http://localhost:5173",
-   })
-);
+// CORS - allow local dev + deployed frontend
+const whitelist = [
+  "http://localhost:5173",                 // local dev
+  "http://localhost:3000",                 // optional local origin if used
+  process.env.FRONTEND_URL || "https://event-booking-94vs.vercel.app" // deployed frontend (fallback)
+];
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    // allow REST tools or server-to-server requests with no origin
+    if (!origin) return callback(null, true);
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS - origin: " + origin));
+    }
+  },
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization", "Accept", "X-Requested-With"],
+};
+
+app.use(cors(corsOptions));
+// Handle preflight for all routes
+app.options("*", cors(corsOptions));
+
 
 mongoose.connect(process.env.MONGO_URL);
 
