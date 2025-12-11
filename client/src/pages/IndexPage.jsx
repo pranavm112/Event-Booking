@@ -46,7 +46,7 @@ import { BiLike } from "react-icons/bi";
       <div className="mt-1 flex flex-col">
         <div className="hidden sm:block" >
           <div href="#" className="flex item-center inset-0">
-            <img src="../src/assets/hero.jpg" alt="" className='w-full'/> 
+            <img src="../src/assets/image.jpg" alt="" className='w-full h-48'/> 
           </div>
         </div>
 
